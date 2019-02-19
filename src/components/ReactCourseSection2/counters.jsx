@@ -12,10 +12,27 @@ class Counters extends Component {
     };
 
     handleReset = () => {
-        this.state.counters.map(nthCounter => {
-            nthCounter.value = 0;
-            return nthCounter;
+        const counters = this.state.counters.map(counter => {
+            counter.value = 0;
+            return counter;
         })
+        this.setState({ counters });
+    }
+
+    handleIncrement = counter => {
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...counter };
+        counters[index].value++;
+        this.setState({ counters });
+    };
+
+    handleDecrement = counter => {
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...counter };
+        counters[index].value--;
+        this.setState({ counters });
     };
 
     handleDelete = (productID) => {
@@ -30,7 +47,12 @@ class Counters extends Component {
                     onClick={this.handleReset}
                     className="btn btn-primary btn-sm m-2">Reset</button>
                 {this.state.counters.map(counter => (
-                    <Counter2 onDelete={this.handleDelete} key={counter.id} counter={counter} >
+                    <Counter2
+                        handleIncrement={this.handleIncrement}
+                        handleDecrement={this.handleDecrement}
+                        onDelete={this.handleDelete}
+                        key={counter.id}
+                        counter={counter} >
                         <h4>Counter Id, {counter.id}</h4>
                     </Counter2>
                 )
