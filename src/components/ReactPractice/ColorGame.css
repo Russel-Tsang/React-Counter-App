@@ -1,0 +1,13 @@
+.center {
+    text-align: center;
+}
+
+.square {
+    width: 25%;
+    height: auto;
+	padding-bottom: 25%;
+	float: left;
+	margin: 3.16%;
+	border-radius: 20%;
+	transition: background-color 0.6s;
+}
