@@ -1,37 +1,72 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-class Counter2 extends Component {
+class Counter3 extends Component {
+    state = {
+        value: 0,
+        items: [
+            "item1", "item2", "item3"
+        ]
+    }
 
-  render() {
-    return (
-      <div>
-        {this.props.children}
-        <span style={{ fontSize: 20 }} className={this.countClasses()}>
-          {this.formatCount()}
-        </span>
-        <button onClick={() => this.props.handleIncrement(this.props.counter)} className="btn btn-secondary btn-sm m-2">
-          Increment
-        </button>
-        <button onClick={() => this.props.handleDecrement(this.props.counter)} className="btn btn-secondary btn-sm m-2">
-          Decrement
-        </button>
-        <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-sm m-2">
-          Delete
-        </button>
-      </div >
-    );
-  }
+    constructor() {
+        super();
+        this.Increment = this.Increment.bind(this);
+        this.Decrement = this.Decrement.bind(this);
+    }
 
-  countClasses() {
-    let countClasses = "badge m-2 ";
-    countClasses += this.props.counter.value === 0 ? "badge-warning" : "badge-primary";
-    return countClasses;
-  }
+    Increment() {
+        this.setState({ value: this.state.value + 1 });
+    }
 
-  formatCount() {
-    return this.props.counter.value === 0 ? "zero" : this.props.counter.value;
-  }
+    Decrement() {
+        this.setState({ value: this.state.value - 1 });
+    }
 
+    render() {
+        return (
+            <div>
+                <span
+                    style={this.styles.buttonStyle}
+                    className={this.formatClass()}
+                >
+                    {this.formatCount()}
+                </span>
+                <button
+                    style={this.styles.buttonStyle}
+                    className="btn btn-secondary btn-sm m-2"
+                    onClick={this.Increment}
+                >
+                    Increment
+                </button>
+                <button
+                    style={this.styles.buttonStyle}
+                    className="btn btn-secondary btn-sm m-2"
+                    onClick={this.Decrement}
+                >
+                    Decrement
+                </button>
+                <ul>
+                    {this.state.items.map(item => <li key={item}>{item}</li>)}
+                </ul>
+            </div>
+        );
+    }
+
+    formatCount() {
+        return this.state.value === 0 ? "zero" : this.state.value;
+    }
+
+    formatClass() {
+        let countClass = "badge m-2 badge-";
+        countClass += this.state.value <= 0 ? "danger" : "primary";
+        return countClass;
+    }
+
+    styles = {
+        buttonStyle: {
+            fontSize: 20
+        }
+    }
 }
 
-export default Counter2;
+export default Counter3;                
