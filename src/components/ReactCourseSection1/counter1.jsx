@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Counter2 extends Component {
+class Counter1 extends Component {
 
   render() {
     return (
@@ -34,4 +34,4 @@ class Counter2 extends Component {
 
 }
 
-export default Counter2;
+export default Counter1;

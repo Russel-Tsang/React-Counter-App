@@ -17,7 +17,7 @@ class Counters extends Component {
                         onDelete={handleDelete}
                         key={counter.id}
                         counter={counter} >
-                        <h4>Counter Id, {counter.id}</h4>
+                        <h4>ID: {counter.id}</h4>
                     </Counter1>
                 )
                 )}
